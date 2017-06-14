@@ -20,10 +20,22 @@ namespace DB_Project
     /// </summary>
     public partial class getField : UserControl
     {
+        string originalValue;
         public getField(string name)
         {
             InitializeComponent();
             title.Text = name;
+        }
+        public getField(string name,string value)
+        {
+            InitializeComponent();
+            title.Text = name;
+            this.value.Text = value;
+            originalValue = value;
+        }
+        public bool IsChanged()
+        {
+            return originalValue != value.Text;
         }
         public string getName()
         {

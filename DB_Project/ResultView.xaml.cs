@@ -56,23 +56,11 @@ namespace DB_Project
             int i=0;
             foreach (var col in mainView.Columns)
 	        {
-                sql+=col.Header.ToString()+"="+adaptToSql(item[i++].ToString())+" AND ";
+                sql+=col.Header.ToString()+"="+DBSingleton.AdaptFieldValueToSql(item[i++].ToString())+" AND ";
 	        }
             sql=sql.Remove(sql.Length-5, 5);
             DBSingleton.DeleteSql(sql);
             RefreshView();
-        }
-        public string adaptToSql(string item)
-        {
-            int o;
-            DateTime t;
-            if (DateTime.TryParse(item, out t))
-                return "to_date('" + t.ToString("dd-MM-yyy HH:mm:ss") + "', 'dd-mm-yyyy hh24:mi:ss')";
-            if(!int.TryParse(item,out o))
-                return "'"+item+"'";
-
-           
-            return item;
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,45 +12,40 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using System.Data;
-using System.Collections.ObjectModel;
+
 namespace DB_Project
 {
     /// <summary>
-    /// Interaction logic for insertItem.xaml
+    /// Interaction logic for UpdateItem.xaml
     /// </summary>
-    public partial class InsertItem : Window
+    public partial class UpdateItem : Window
     {
-        
-        public InsertItem(string tableName,ObservableCollection<DataGridColumn> field)
+        public UpdateItem(string tableName, ObservableCollection<DataGridColumn> field)
         {
             InitializeComponent();
             title.Text = tableName;
             foreach (var item in field)
             {
                 stackFields.Children.Add(new getField(item.Header.ToString()));
-                
+
             }
         }
 
-        private void insertBtn_Click(object sender, RoutedEventArgs e)
+        private void UpdateBtn_Click(object sender, RoutedEventArgs e)
         {
-            string comm = "insert into " + title.Text+"(";
+            string comm = "update " + title.Text + "set";
             foreach (getField item in stackFields.Children)
             {
-                comm += item.getName()+",";
+                if (item.IsChanged())
+                    comm += item.getName() + "="+DBSingleton.AdaptFieldValueToSql(item.getValue())+",";
             }
+       
             comm = comm.Substring(0, comm.Length - 1);
-            comm+=") values (";
-            foreach (getField item in stackFields.Children)
-            {
-                comm += DBSingleton.AdaptFieldValueToSql(item.getValue()) + ",";
-            }
-            comm = comm.Substring(0,comm.Length - 1);
             comm += ")";
-            if (DBSingleton.InsertSql(comm))
+            if (DBSingleton.UpdateSql(comm))
                 Close();
-            
+
         }
+        
     }
 }
