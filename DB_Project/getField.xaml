@@ -12,6 +12,6 @@
 
         <TextBlock Grid.Column="0" Text="TextBlock" x:Name="title"/>
         <TextBox Grid.Column="1" Text="TextBox" x:Name="value"/>
-
+        <ComboBox Grid.Column="1" x:Name="comboBox" Visibility="Collapsed"/>
     </Grid>
 </UserControl>

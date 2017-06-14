@@ -5,32 +5,34 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using System.Windows;
-using Oracle.ManagedDataAccess.Client;
+using System.Data.OleDb;
+//using Oracle.ManagedDataAccess.Client;
 namespace DB_Project
 {
     public class DBSingleton
     {
-        private static OracleConnection oracleConnection1 = null;
-        public static OracleConnection GetConnection()
+        private static OleDbConnection oConnection1 = null;
+        public static OleDbConnection GetConnection()
         {
-            if (oracleConnection1 == null)
+            if (oConnection1 == null)
             {
-                OracleConnectionStringBuilder myCStringB = new OracleConnectionStringBuilder()
+               /* OleDbConnectionStringBuilder myCStringB = new OleDbConnectionStringBuilder()
                 {
+                    
                     UserID = "tennenba",
                     Password = "207447897",
                     DataSource = "labdbwin"
-                };
-                oracleConnection1 = new OracleConnection(myCStringB.ConnectionString);
+                };*/
+                oConnection1 = new OleDbConnection("provider=MSDAORA; Data Source=labdbwin; user id = tennenba; password = 207447897;");
             }
-            return oracleConnection1;
+            return oConnection1;
         }
         public static DataTable SelectSql(string sql)
         {
             try
             {
-                OracleDataAdapter dataAdapter = new OracleDataAdapter();
-                dataAdapter.SelectCommand = new OracleCommand()
+                OleDbDataAdapter dataAdapter = new OleDbDataAdapter();
+                dataAdapter.SelectCommand = new OleDbCommand()
                 {
                     Connection = DBSingleton.GetConnection(),
                     CommandText = sql
@@ -53,8 +55,8 @@ namespace DB_Project
             {
                 var con = GetConnection();
                 con.Open();
-                OracleCommand command;
-                command = new OracleCommand()
+                OleDbCommand command;
+                command = new OleDbCommand()
                 {
                     Connection = con,
                     CommandText = sql
@@ -78,8 +80,8 @@ namespace DB_Project
             {
                 var con=GetConnection();
                 con.Open();
-                OracleCommand command;
-                command = new OracleCommand()
+                OleDbCommand command;
+                command = new OleDbCommand()
                 {
                     Connection = con,
                     CommandText = sql
@@ -100,8 +102,8 @@ namespace DB_Project
             {
                 var con = GetConnection();
                 con.Open();
-                OracleCommand command;
-                command = new OracleCommand()
+                OleDbCommand command;
+                command = new OleDbCommand()
                 {
                     Connection = con,
                     CommandText = sql
