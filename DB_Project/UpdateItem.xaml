@@ -14,6 +14,6 @@
         </Grid.RowDefinitions>
         <TextBlock x:Name="title" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" FontFamily="Ariel" FontStyle="Italic" FontWeight="Bold" Text="Update" Foreground="Salmon"/>
         <StackPanel x:Name="stackFields" Grid.Row="1"/>
-        <Button x:Name="insertBtn" Content="Update" Click="UpdateBtn_Click" Grid.Row="2"/>
+        <Button x:Name="updateBtn" Content="Update" Click="UpdateBtn_Click" Grid.Row="2"/>
     </Grid>
 </Window>

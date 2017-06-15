@@ -43,5 +43,11 @@ namespace DB_Project
             new InsertItem(tableName, resultView.mainView.Columns).Show();
 
         }
+
+        private void updateBtn_Click(object sender, RoutedEventArgs e)
+        {
+            new UpdateItem(tableName, resultView.mainView.Columns, ((System.Data.DataRowView)resultView.mainView.SelectedItem).Row.ItemArray.Select(x=>x.ToString()).ToArray()).Show();
+
+        }
     }
 }

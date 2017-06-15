@@ -20,28 +20,37 @@ namespace DB_Project
     /// </summary>
     public partial class UpdateItem : Window
     {
-        public UpdateItem(string tableName, ObservableCollection<DataGridColumn> field)
+        public UpdateItem(string tableName, ObservableCollection<DataGridColumn> field, string[] itemArray)
         {
             InitializeComponent();
             title.Text = tableName;
+            int i = 0;
             foreach (var item in field)
             {
-                stackFields.Children.Add(new getField(item.Header.ToString()));
+                stackFields.Children.Add(new getField(item.Header.ToString(),itemArray[i++]));
 
             }
         }
 
         private void UpdateBtn_Click(object sender, RoutedEventArgs e)
         {
-            string comm = "update " + title.Text + "set";
+            throw new NotImplementedException();
+            string comm = "update " + title.Text + " set ";
+            bool changed = false;
             foreach (getField item in stackFields.Children)
             {
                 if (item.IsChanged())
-                    comm += item.getName() + "="+DBSingleton.AdaptFieldValueToSql(item.getValue())+",";
+                {
+                    comm += item.getName() + "=" + DBSingleton.AdaptFieldValueToSql(item.getValue()) + ",";
+                    changed = true;
+                }
             }
-       
+            if (!changed)
+            {
+                MessageBox.Show("You didn't updated anything!");
+                Close();
+            }
             comm = comm.Substring(0, comm.Length - 1);
-            comm += ")";
             if (DBSingleton.UpdateSql(comm))
                 Close();
 

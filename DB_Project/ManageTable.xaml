@@ -19,7 +19,7 @@
             <Button Grid.Column="0" x:Name="delBtn" Click="delBtn_Click">
                 <Image Source="Images\delete.jpg"/>
             </Button>
-            <Button Grid.Column="1">
+            <Button Grid.Column="1" Click="updateBtn_Click">
                 <Image Source="Images\update2.png"/>
             </Button>
             <Button Grid.Column="2" Click="insertBtn_Click">
