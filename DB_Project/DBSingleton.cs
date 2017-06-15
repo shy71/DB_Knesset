@@ -27,7 +27,7 @@ namespace DB_Project
             }
             return oConnection1;
         }
-        public static DataTable SelectSql(string sql)
+        public static DataTable SelectSql(string sql,string other="")
         {
             try
             {
@@ -43,6 +43,8 @@ namespace DB_Project
             }
             catch (Exception e)
             {
+                if (other != "")
+                    return SelectSql(other);
                 MessageBox.Show(e.Message, "SQL Error!");
                 return null;
             }
@@ -119,6 +121,18 @@ namespace DB_Project
                 return false;
             }
 
+        }
+        public static string MakeWhereClause(string[] columns,string[] values)
+        {
+
+            string sql = " where ";
+            int i = 0;
+            foreach (var col in columns)
+            {
+                sql += col + "=" +AdaptFieldValueToSql(values[i++].ToString()) + " AND ";
+            }
+            sql = sql.Remove(sql.Length - 5, 5);
+            return sql;
         }
         public static string AdaptFieldValueToSql(string item)
         {

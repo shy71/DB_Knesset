@@ -23,27 +23,49 @@ namespace DB_Project
     {
         string originalValue;
         bool IsForigenKey=false;
-        public getField(string name)
+        public getField(string name,string tableName)
         {
             InitializeComponent();
-            if (name.EndsWith("_ID"))
-                SetUpForigenKey(name.Replace("_ID",""));
+            SetUp(name, tableName);
+        }
+        void SetUp(string name, string tableName)
+        {
+            if ((tableName + "_ID").ToUpper() == name)
+                value.IsEnabled = false;
+            else if (name.EndsWith("_ID"))
+                SetUpForigenKey(name.Replace("_ID", ""));
             title.Text = name;
         }
-
         private void SetUpForigenKey(string name)
         {
             IsForigenKey = true;
             comboBox.Visibility = Visibility.Visible;
             value.Visibility = Visibility.Collapsed;
-            DataTable dt=DBSingleton.SelectSql(string.Format("select {0}_ID,{0}_name from {0}", name));
-            comboBox.ItemsSource = dt.AsDataView();
+            int i = 0;
+            int index=-1;
+            DataTable dt;
+            dt = DBSingleton.SelectSql(string.Format("select {0}_ID,{0}_name from {0}", name), string.Format("select {0}_ID,{0}_location from {0}", name));
+            foreach (DataRowView item in dt.AsDataView())
+            {
+                i++;
+                if (IsForigenKey)
+                    if (item.Row.ItemArray[0].ToString() == originalValue)
+                        index = i;
+                if(item.Row.ItemArray.Length>1)
+                    comboBox.Items.Add(item.Row.ItemArray[0].ToString()+" - "+item.Row.ItemArray[1].ToString());
+                else
+                comboBox.Items.Add(item.Row.ItemArray[0].ToString());
+            }
+            if (IsForigenKey)
+                comboBox.SelectedIndex = index;
         }
 
-        public getField(string name,string value):this(name)
+        public getField(string name,string value, string tableName)
         {
+            InitializeComponent();
             this.value.Text = value;
             originalValue = value;
+            SetUp(name, tableName);
         }
         public bool IsChanged()
         {
@@ -56,7 +78,7 @@ namespace DB_Project
         public string getValue()
         {
             if (IsForigenKey)
-                return comboBox.SelectedValue.ToString();
+                return comboBox.SelectedValue.ToString().Substring(0, comboBox.SelectedValue.ToString().IndexOf(" - "));
             return value.Text;
         }
     }

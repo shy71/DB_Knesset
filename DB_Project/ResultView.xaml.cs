@@ -37,7 +37,7 @@ namespace DB_Project
             viewSql = sql;
             RefreshView();
         }
-        void RefreshView()
+        public void RefreshView()
         {
             mainView.ItemsSource = DBSingleton.SelectSql(viewSql).AsDataView();
         }
@@ -46,19 +46,12 @@ namespace DB_Project
 
         public void DeleteRow(string tableName)
         {
-            string sql="delete "+tableName+" where ";
             if (mainView.SelectedItem == null)
             {
                 MessageBox.Show("You didn't chose any item to delete!");
                 return;
             }
-            var item = ((DataRowView)mainView.SelectedItem).Row.ItemArray;
-            int i=0;
-            foreach (var col in mainView.Columns)
-	        {
-                sql+=col.Header.ToString()+"="+DBSingleton.AdaptFieldValueToSql(item[i++].ToString())+" AND ";
-	        }
-            sql=sql.Remove(sql.Length-5, 5);
+            string sql = "delete " + tableName + DBSingleton.MakeWhereClause(mainView.Columns.Select(x => x.Header.ToString()).ToArray(), ((DataRowView)mainView.SelectedItem).Row.ItemArray.Select(x => x.ToString()).ToArray());
             DBSingleton.DeleteSql(sql);
             RefreshView();
         }

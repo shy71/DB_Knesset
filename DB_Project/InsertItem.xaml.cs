@@ -27,7 +27,7 @@ namespace DB_Project
             title.Text = tableName;
             foreach (var item in field)
             {
-                stackFields.Children.Add(new getField(item.Header.ToString()));
+                stackFields.Children.Add(new getField(item.Header.ToString(),tableName));
                 
             }
         }

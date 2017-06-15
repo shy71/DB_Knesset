@@ -23,7 +23,7 @@ namespace DB_Project
         public MainWindow()
         {
             InitializeComponent();
-            new ManageTable("MEMBER_LOG").Show();
+            new ManageTable("member").Show();
         }
         
     }

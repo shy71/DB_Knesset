@@ -36,17 +36,26 @@ namespace DB_Project
         private void delBtn_Click(object sender, RoutedEventArgs e)
         {
             resultView.DeleteRow(tableName);
+            resultView.RefreshView();
 
         }
         private void insertBtn_Click(object sender, RoutedEventArgs e)
         {
             new InsertItem(tableName, resultView.mainView.Columns).Show();
+            resultView.RefreshView();
 
         }
 
         private void updateBtn_Click(object sender, RoutedEventArgs e)
         {
+            if (resultView.mainView.SelectedItem == null)
+            {
+                MessageBox.Show("You didn't chose any item to delete!");
+                return;
+            }
             new UpdateItem(tableName, resultView.mainView.Columns, ((System.Data.DataRowView)resultView.mainView.SelectedItem).Row.ItemArray.Select(x=>x.ToString()).ToArray()).Show();
+            resultView.RefreshView();
+
 
         }
     }
