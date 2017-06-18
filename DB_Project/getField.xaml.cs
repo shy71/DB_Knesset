@@ -42,9 +42,11 @@ namespace DB_Project
             comboBox.Visibility = Visibility.Visible;
             value.Visibility = Visibility.Collapsed;
             int i = 0;
-            int index=-1;
+            int index = -1;
             DataTable dt;
-            dt = DBSingleton.SelectSql(string.Format("select {0}_ID,{0}_name from {0}", name), string.Format("select {0}_ID,{0}_location from {0}", name));
+            dt = DBSingleton.TrySelectSql(string.Format("select {0}_ID,{0}_name from {0}", name));
+            if (dt == null)
+                dt = DBSingleton.SelectSql(string.Format("select {0}_ID,{0}_location from {0}", name));
             foreach (DataRowView item in dt.AsDataView())
             {
                 i++;

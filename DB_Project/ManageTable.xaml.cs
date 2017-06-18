@@ -30,23 +30,25 @@ namespace DB_Project
         {
             this.tableName = tableName;
             title.Text = tableName;
-            resultView.Init(string.Format("select * from {0}", tableName));
+            sqlCom.Text = string.Format("select * from {0}", tableName);
+            resultView.Init(sqlCom.Text);
+           
         }
 
-        private void delBtn_Click(object sender, RoutedEventArgs e)
+        private void DelBtn_Click(object sender, RoutedEventArgs e)
         {
             resultView.DeleteRow(tableName);
             resultView.RefreshView();
 
         }
-        private void insertBtn_Click(object sender, RoutedEventArgs e)
+        private void InsertBtn_Click(object sender, RoutedEventArgs e)
         {
             new InsertItem(tableName, resultView.mainView.Columns).Show();
             resultView.RefreshView();
 
         }
 
-        private void updateBtn_Click(object sender, RoutedEventArgs e)
+        private void UpdateBtn_Click(object sender, RoutedEventArgs e)
         {
             if (resultView.mainView.SelectedItem == null)
             {
@@ -57,6 +59,17 @@ namespace DB_Project
             resultView.RefreshView();
 
 
+        }
+
+        private void SqlCom_TextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!resultView.TryUpdateQuery(sqlCom.Text))
+                sqlCom.Text = string.Format("select * from {0}", tableName);
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            new PickTable().Show();
         }
     }
 }

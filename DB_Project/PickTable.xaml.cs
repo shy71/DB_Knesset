@@ -10,31 +10,30 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace DB_Project
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for PickTable.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class PickTable : Window
     {
-        public MainWindow()
+        public PickTable()
         {
             InitializeComponent();
-            new ManageTable("member").Show();
         }
 
-        private void ViewTables_Button(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-
-           
-
+            new ManageTable((sender as Button).Content.ToString().ToUpper()).Show();
+            Close();
+            
         }
-        private void FuncProc_Button(object sender, RoutedEventArgs e)
-        {
 
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            new MainWindow().Show();
         }
     }
 }

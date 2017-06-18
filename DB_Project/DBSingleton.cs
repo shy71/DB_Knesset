@@ -27,7 +27,27 @@ namespace DB_Project
             }
             return oConnection1;
         }
-        public static DataTable SelectSql(string sql,string other="")
+        public static DataTable TrySelectSql(string TrySql)
+        {
+            try
+            {
+                OracleDataAdapter dataAdapter = new OracleDataAdapter();
+                dataAdapter.SelectCommand = new OracleCommand()
+                {
+                    Connection = DBSingleton.GetConnection(),
+                    CommandText = TrySql
+                };
+                DataTable dt = new DataTable();
+                dataAdapter.Fill(dt);
+                return dt;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+
+        }
+        public static DataTable SelectSql(string sql)
         {
             try
             {
@@ -43,8 +63,6 @@ namespace DB_Project
             }
             catch (Exception e)
             {
-                if (other != "")
-                    return SelectSql(other);
                 MessageBox.Show(e.Message, "SQL Error!");
                 return null;
             }

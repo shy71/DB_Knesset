@@ -64,6 +64,9 @@
     <Compile Include="InsertItem.xaml.cs">
       <DependentUpon>InsertItem.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PickTable.xaml.cs">
+      <DependentUpon>PickTable.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ResultView.xaml.cs">
       <DependentUpon>ResultView.xaml</DependentUpon>
     </Compile>
@@ -92,6 +95,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="ManageTable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PickTable.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

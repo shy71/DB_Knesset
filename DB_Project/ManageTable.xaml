@@ -1,16 +1,17 @@
 ﻿<Window x:Class="DB_Project.ManageTable"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="ManageTable" xmlns:local="clr-namespace:DB_Project" MaxWidth="1000">
+        Title="ManageTable" xmlns:local="clr-namespace:DB_Project" MaxWidth="1000" Closed="Window_Closed">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="1.5*"/>
-            <RowDefinition Height="6*"/>
-            <RowDefinition Height="2*"/>
+            <RowDefinition Height="80*"/>
+            <RowDefinition Height="25*"/>
+            <RowDefinition Height="294*"/>
+            <RowDefinition Height="106*"/>
         </Grid.RowDefinitions>
-        <TextBlock x:Name="title" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" FontFamily="Ariel" FontStyle="Italic" FontWeight="Bold" Text="Party" Foreground="Salmon"/>
-        <local:ResultView x:Name="resultView" Grid.Row="1"/>
-        <Grid Grid.Row="2">
+        <TextBlock x:Name="title" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" FontFamily="Ariel" FontStyle="Italic" FontWeight="Bold" Text="Party" Foreground="Salmon" Margin="342,22,341,22"/>
+        <local:ResultView x:Name="resultView" Grid.Row="1" Grid.RowSpan="2"/>
+        <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="2*"/>
@@ -26,5 +27,6 @@
                 <Image Source="Images\add.png"/>
             </Button>
         </Grid>
+        <TextBox x:Name="sqlCom" Height="23" Grid.Row="1" Text="TextBox" TextInput="sqlCom_TextInput" />
     </Grid>
 </Window>
