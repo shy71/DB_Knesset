@@ -4,8 +4,8 @@
         Title="MainWindow" Height="350" Width="525">
     <Grid>
         <TextBlock HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="Welcome to the Knesset Database!" VerticalAlignment="Top" Width="230" Margin="150,53,0,0"/>
-        <Button Content="View Tables&#xD;&#xA;" HorizontalAlignment="Left" Margin="80,175,0,0" VerticalAlignment="Top" Width="93" Click="viewTables_Button"/>
-        <Button Content="View Function/Procdure" HorizontalAlignment="Left" Margin="279,175,0,0" VerticalAlignment="Top" Width="140" Height="35"/>
+        <Button Content="View Tables&#xD;&#xA;" HorizontalAlignment="Left" Margin="80,175,0,0" VerticalAlignment="Top" Width="93" Click="ViewTables_Button"/>
+        <Button Content="View Function/Procdure" HorizontalAlignment="Left" Margin="279,175,0,0" VerticalAlignment="Top" Width="140" Height="35" Click="FuncProc_Button"/>
 
 
     </Grid>

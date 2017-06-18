@@ -23,12 +23,12 @@ namespace DB_Project
         public MainWindow()
         {
             InitializeComponent();
-            new ManageTable("member").Show();
         }
 
         private void ViewTables_Button(object sender, RoutedEventArgs e)
         {
-
+            new PickTable().Show();
+            Close();
            
 
         }
