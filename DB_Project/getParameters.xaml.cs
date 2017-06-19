@@ -12,7 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using System.Data.OracleClient;
 namespace DB_Project
 {
     /// <summary>
@@ -21,40 +21,56 @@ namespace DB_Project
     public partial class getParameters : Window
     {
         string[] field;
-        public getParameters(string funcName,string[] param)
+        OracleCommand command;
+        bool IsFunc;
+       public string returnValue;
+        public getParameters(string funcName,string[] param,OracleCommand com,bool IsFunc)
         {
             InitializeComponent();
             field = param;
+            command = com;
             title.Text = funcName;
-            int i = 0;
+            this.IsFunc = IsFunc;
             foreach (var item in field)
             {
-                stackFields.Children.Add(new getField(item, funcName));
+                stackFields.Children.Add(new getField(item));
 
             }
         }
 
         private void submitBtn_Click(object sender, RoutedEventArgs e)
         {
-            string comm = "update " + title.Text + " set ";
-            bool changed = false;
-            foreach (getField item in stackFields.Children)
+            int o;
+            foreach (var item in stackFields.Children)
             {
-                if (item.IsChanged())
+                var value = ((getField)item).getValue();
+                if (int.TryParse(value, out o))
+                    command.Parameters[((getField)item).getName()].Value = o;
+                else
+                 command.Parameters[((getField)item).getName()].Value =value;
+            }
+            try
+            {
+                command.ExecuteNonQuery();
+                if (IsFunc)
                 {
-                    comm += item.getName() + "=" + DBSingleton.AdaptFieldValueToSql(item.getValue()) + ",";
-                    changed = true;
+                    returnValue = command.Parameters["FunctionResult"].Value.ToString();
+                   // MessageBox.Show("The Function returned: " + command.Parameters["FunctionResult"].Value.ToString(), "Retunred Value");
+                    Close();
                 }
+                else
+                {
+                    MessageBox.Show("The Procedure executed successfully");
+                }
+
+
             }
-            if (!changed)
+            catch(Exception ex)
             {
-                MessageBox.Show("You didn't updated anything!");
-                Close();
+                MessageBox.Show(ex.Message);
             }
-            comm = comm.Substring(0, comm.Length - 1);
-            comm += DBSingleton.MakeWhereClause(field, values);
-            if (DBSingleton.UpdateSql(comm))
-                Close();
+            Close();
+
 
         }
     }

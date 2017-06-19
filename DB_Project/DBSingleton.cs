@@ -74,7 +74,8 @@ namespace DB_Project
             try
             {
                 var con = GetConnection();
-                con.Open();
+                if (con.State != System.Data.ConnectionState.Open)
+                    con.Open();
                 OracleCommand command;
                 command = new OracleCommand()
                 {
@@ -99,7 +100,8 @@ namespace DB_Project
             try
             {
                 var con=GetConnection();
-                con.Open();
+                if (con.State != System.Data.ConnectionState.Open)
+                    con.Open();
                 OracleCommand command;
                 command = new OracleCommand()
                 {
@@ -121,7 +123,8 @@ namespace DB_Project
             try
             {
                 var con = GetConnection();
-                con.Open();
+                if (con.State != System.Data.ConnectionState.Open)
+                    con.Open();
                 OracleCommand command;
                 command = new OracleCommand()
                 {

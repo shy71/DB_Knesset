@@ -58,9 +58,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Bonus_For_Assistent.xaml.cs">
-      <DependentUpon>Bonus_For_Assistent.xaml</DependentUpon>
-    </Compile>
     <Compile Include="getField.xaml.cs">
       <DependentUpon>getField.xaml</DependentUpon>
     </Compile>
@@ -82,10 +79,6 @@
     <Compile Include="UpdateItem.xaml.cs">
       <DependentUpon>UpdateItem.xaml</DependentUpon>
     </Compile>
-    <Page Include="Bonus_For_Assistent.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="getField.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

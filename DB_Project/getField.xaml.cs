@@ -30,8 +30,10 @@ namespace DB_Project
         }
         void SetUp(string name)
         {
-            if (name.EndsWith("_ID"))
+            if (name.ToUpper().EndsWith("_ID"))
                 SetUpForigenKey(name.Replace("_ID", ""));
+            else if(name.ToUpper().EndsWith("ID"))
+                SetUpForigenKey(name.ToUpper().Replace("ID", ""));
             title.Text = name;
         }
         public getField(string name,string tableName)
