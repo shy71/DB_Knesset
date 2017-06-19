@@ -39,13 +39,13 @@ namespace DB_Project
         }
         public bool TryUpdateQuery(string newSql)
         {
-                var temp= DBSingleton.TrySelectSql(newSql).AsDataView();
+                var temp= DBSingleton.TrySelectSql(newSql);
             if(temp==null)
             {
                 MessageBox.Show("The select sql query wasn't valid!");
                 return false;
             }
-                mainView.ItemsSource = temp;
+                mainView.ItemsSource = temp.AsDataView();
             return true;
         }
         public void RefreshView()

@@ -19,6 +19,7 @@ namespace DB_Project
     /// </summary>
     public partial class PickTable : Window
     {
+        bool progClosing=false;
         public PickTable()
         {
             InitializeComponent();
@@ -27,12 +28,14 @@ namespace DB_Project
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             new ManageTable((sender as Button).Content.ToString().ToUpper()).Show();
+            progClosing = true;
             Close();
             
         }
 
         private void Window_Closing(object sender, EventArgs e)
         {
+            if(!progClosing)
             new MainWindow().Show();
         }
     }

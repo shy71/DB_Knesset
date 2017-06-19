@@ -71,5 +71,11 @@ namespace DB_Project
         {
             new PickTable().Show();
         }
+
+        private void sqlCom_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+                SqlCom_TextInput(sender, null);
+        }
     }
 }

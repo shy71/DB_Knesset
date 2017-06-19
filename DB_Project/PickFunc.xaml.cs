@@ -10,31 +10,23 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace DB_Project
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for PickFunc.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class PickFunc : Window
     {
-        public MainWindow()
+        public PickFunc()
         {
             InitializeComponent();
         }
 
-        private void ViewTables_Button(object sender, RoutedEventArgs e)
+        private void Bonus_For_Assistent(object sender, RoutedEventArgs e)
         {
-            new PickTable().Show();
-            Close();
-           
-
-        }
-        private void FuncProc_Button(object sender, RoutedEventArgs e)
-        {
-            new PickFunc().Show();
+            new Bonus_For_Assistent().Show();
         }
     }
 }

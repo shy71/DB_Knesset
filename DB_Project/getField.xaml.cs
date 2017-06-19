@@ -23,6 +23,17 @@ namespace DB_Project
     {
         string originalValue;
         bool IsForigenKey=false;
+        public getField(string name)
+        {
+            InitializeComponent();
+            SetUp(name);
+        }
+        void SetUp(string name)
+        {
+            if (name.EndsWith("_ID"))
+                SetUpForigenKey(name.Replace("_ID", ""));
+            title.Text = name;
+        }
         public getField(string name,string tableName)
         {
             InitializeComponent();
@@ -46,7 +57,9 @@ namespace DB_Project
             DataTable dt;
             dt = DBSingleton.TrySelectSql(string.Format("select {0}_ID,{0}_name from {0}", name));
             if (dt == null)
-                dt = DBSingleton.SelectSql(string.Format("select {0}_ID,{0}_location from {0}", name));
+                dt = DBSingleton.TrySelectSql(string.Format("select {0}_ID,{0}_location from {0}", name));
+            if (dt == null)
+                dt = DBSingleton.SelectSql(string.Format("select {0}_ID,{0}_date from {0}", name));
             foreach (DataRowView item in dt.AsDataView())
             {
                 i++;

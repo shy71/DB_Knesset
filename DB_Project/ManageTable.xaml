@@ -10,7 +10,7 @@
             <RowDefinition Height="106*"/>
         </Grid.RowDefinitions>
         <TextBlock x:Name="title" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" FontFamily="Ariel" FontStyle="Italic" FontWeight="Bold" Text="Party" Foreground="Salmon" Margin="342,22,341,22"/>
-        <local:ResultView x:Name="resultView" Grid.Row="1" Grid.RowSpan="2"/>
+        <local:ResultView x:Name="resultView" Grid.Row="2"/>
         <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
@@ -27,6 +27,6 @@
                 <Image Source="Images\add.png"/>
             </Button>
         </Grid>
-        <TextBox x:Name="sqlCom" Height="23" Grid.Row="1" Text="TextBox" TextInput="SqlCom_TextInput" />
+        <TextBox x:Name="sqlCom" Height="23" Grid.Row="1" Text="TextBox" KeyUp="sqlCom_KeyUp" TextInput="SqlCom_TextInput" />
     </Grid>
 </Window>
