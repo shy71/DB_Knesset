@@ -35,6 +35,8 @@ namespace DB_Project
         private void FuncProc_Button(object sender, RoutedEventArgs e)
         {
             new PickFunc().Show();
+            Close();
+
         }
     }
 }

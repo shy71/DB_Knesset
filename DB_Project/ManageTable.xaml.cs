@@ -37,8 +37,12 @@ namespace DB_Project
 
         private void DelBtn_Click(object sender, RoutedEventArgs e)
         {
-            resultView.DeleteRow(tableName);
-            resultView.RefreshView();
+            var result =MessageBox.Show("Are you sure you want to delete this record?", "Danger!", MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.Yes)
+            {
+                resultView.DeleteRow(tableName);
+                resultView.RefreshView();
+            }
 
         }
         private void InsertBtn_Click(object sender, RoutedEventArgs e)

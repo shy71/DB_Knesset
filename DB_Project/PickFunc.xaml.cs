@@ -28,16 +28,16 @@ namespace DB_Project
         private void Bonus_For_Assistent(object sender, RoutedEventArgs e)
         {
             OracleCommand com = getNewCommand("PKG_ASSISTENT.bonusForAssistants");
-            addArgNumber("bonusPoolp",com);
+            addArgNumber("totalBonus",com);
             addArgNumber("partyId", com);
-            addArgNumber("bonus", com);
-            exeProc("Bonus For Assistent", new string[] { "bonusPoolp", "partyId", "bonus" }, com);
+            addArgNumber("individualBonus", com);
+            exeProc("Bonus For Assistent", new string[] { "totalBonus", "partyId", "individualBonus" }, com);
         }
         private void Move_Email_Domain(object sender, RoutedEventArgs e)
         {
             OracleCommand com = getNewCommand("PKG_MEMBER.MoveEmailDomain");
-            addArgString("domain", com);
-            exeProc("Move Email Domain", new string[] { "domain" }, com);
+            addArgString("newDomain", com);
+            exeProc("Move Email Domain", new string[] { "newDomain" }, com);
         }
         private void Member_Cost(object sender, RoutedEventArgs e)
         {
@@ -46,7 +46,7 @@ namespace DB_Project
             com.Parameters.Add("FunctionResult", OracleType.Int32);
             com.Parameters["FunctionResult"].Direction = System.Data.ParameterDirection.ReturnValue;
             var wind = new getParameters("Member Cost", new string[] { "memberId" }, com, true);
-            wind.Closing += (sende, ev)=>MessageBox.Show("The member cost is: "+((getParameters)sende).returnValue+ "₪");
+            wind.Closing += (sende, ev) => { if(((getParameters)sende).returnValue !=null) MessageBox.Show("The member cost is: " + ((getParameters)sende).returnValue + "₪"); };
             wind.ShowDialog();
 
         }
@@ -57,7 +57,7 @@ namespace DB_Project
             com.Parameters.Add("FunctionResult", OracleType.Int16);
             com.Parameters["FunctionResult"].Direction = System.Data.ParameterDirection.ReturnValue;
             var wind = new getParameters("Ratio Bills Over Average", new string[] { "memberId" }, com, true);
-            wind.Closing += (sende, ev) => MessageBox.Show((Convert.ToInt32(((getParameters)sende).returnValue)==1)?"The member is over the Bills average!": "The member is under the Bills average!");
+            wind.Closing += (sende, ev) => { if (((getParameters)sende).returnValue != null) MessageBox.Show((Convert.ToInt32(((getParameters)sende).returnValue) == 1) ? "The member is over the Bills average!" : "The member is under the Bills average!"); };
             wind.ShowDialog();
 
 
@@ -90,6 +90,11 @@ namespace DB_Project
         {
             com.Parameters.Add(name, OracleType.Number);
             com.Parameters[name].Direction = System.Data.ParameterDirection.Input;
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            new MainWindow().Show();
         }
     }
 }

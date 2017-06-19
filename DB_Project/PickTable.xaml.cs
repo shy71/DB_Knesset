@@ -38,5 +38,19 @@ namespace DB_Project
             if(!progClosing)
             new MainWindow().Show();
         }
+
+        private void TextInput_table(object sender, EventArgs e)
+        {
+            if (otherTable.Text != "")
+                new ManageTable(otherTable.Text.ToUpper()).Show();
+            progClosing = true;
+            Close();
+        }
+
+        private void TextBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+                TextInput_table(sender, null);
+        }
     }
 }

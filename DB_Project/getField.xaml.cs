@@ -39,14 +39,17 @@ namespace DB_Project
         public getField(string name,string tableName)
         {
             InitializeComponent();
-            SetUp(name, tableName);
+            SetUp(name, tableName,true);
         }
-        void SetUp(string name, string tableName)
+        void SetUp(string name, string tableName,bool IsInsert=false)
         {
-            if ((tableName + "_ID").ToUpper() == name)
-                value.IsEnabled = false;
-            else if (name.EndsWith("_ID"))
-                SetUpForigenKey(name.Replace("_ID", ""));
+            if (!IsInsert)
+            {
+                if ((tableName + "_ID").ToUpper() == name)
+                    value.IsEnabled = false;
+                else if (name.EndsWith("_ID"))
+                    SetUpForigenKey(name.Replace("_ID", ""));
+            }
             title.Text = name;
         }
         private void SetUpForigenKey(string name)
