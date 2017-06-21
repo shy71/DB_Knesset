@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:DB_Project"
         mc:Ignorable="d"
         Title="UpdateItem" Height="300" Width="300">
-    <Grid>
+    <Grid Background="#DABD95">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>

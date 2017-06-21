@@ -3,7 +3,20 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              StartupUri="MainWindow.xaml">
         <Application.Resources>
-         <!--  <Style TargetType="Button">
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="DarkGoldenrod"/>
+            <Setter Property="Foreground" Value="Maroon"/>
+            <Setter Property="FontFamily" Value="Comic Sans MS"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Name="txtblkStyle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#FF7A3E48" />
+            <Setter Property="FontFamily" Value="Comic Sans MS" />
+        </Style>
+        <!--  <Style TargetType="Button">
                 <Setter Property="Background" Value="DarkGoldenrod" />
                 <Setter Property="Foreground" Value="Maroon" />
                 <Setter Property="FontFamily" Value="Comic Sans MS" />

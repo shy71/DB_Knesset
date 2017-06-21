@@ -52,5 +52,10 @@ namespace DB_Project
             if (e.Key == Key.Enter)
                 TextInput_table(sender, null);
         }
+
+        private void otherTable_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

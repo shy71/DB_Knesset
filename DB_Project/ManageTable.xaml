@@ -10,20 +10,20 @@
             <RowDefinition Height="106*"/>
         </Grid.RowDefinitions>
         <TextBlock x:Name="title" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" FontFamily="Ariel" FontStyle="Italic" FontWeight="Bold" Text="Party" Foreground="Salmon" Margin="342,22,341,22"/>
-        <local:ResultView x:Name="resultView" Grid.Row="2"/>
+        <local:ResultView Background="#DABD95" x:Name="resultView" Grid.Row="2"/>
         <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" x:Name="delBtn" Click="DelBtn_Click">
+            <Button Grid.Column="0" x:Name="delBtn" ToolTip="Delete" Click="DelBtn_Click">
                 <Image Source="Images\delete.jpg"/>
             </Button>
-            <Button Grid.Column="1" Click="UpdateBtn_Click">
+            <Button Grid.Column="1" ToolTip="Update" Click="UpdateBtn_Click">
                 <Image Source="Images\update2.png"/>
             </Button>
-            <Button Grid.Column="2" Click="InsertBtn_Click">
+            <Button Grid.Column="2" ToolTip="Insert" Click="InsertBtn_Click">
                 <Image Source="Images\add.png"/>
             </Button>
         </Grid>

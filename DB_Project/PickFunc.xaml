@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DB_Project"
         mc:Ignorable="d"
-        Title="PickFunc" Height="300" Width="300" Closing="Window_Closing">
-    <Grid>
+        Title="PickFunc" Height="300" Width="600" Closing="Window_Closing">
+    <Grid Background="#DABD95">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
@@ -15,13 +15,12 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
-        <Button Content="Bouns For Assistants" Margin="0,0,33,0" Grid.ColumnSpan="2" Grid.Row="1" Click="Bonus_For_Assistent" />
-        <Button Content="Move Email Domain" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Margin="44,89,0,0" Grid.RowSpan="2" Click="Move_Email_Domain" />
-        <Button Content="Ratio Bills Over Average" Grid.Row="2" Grid.ColumnSpan="2" Margin="0,0,54,0" Click="Ratio_Bills_Over_Average" />
-        <Button Content="Member Cost" Grid.Column="1" Grid.Row="1" Margin="65,0,0,0" Grid.ColumnSpan="2" Click="Member_Cost" />
-        <TextBlock HorizontalAlignment="Left" Margin="22,25,0,0" TextWrapping="Wrap" FontWeight="Bold" Text="Choose the func\proc you want to execute" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="163"/>
+        <Button Content="Bouns For Assistants" Grid.Row="1" Click="Bonus_For_Assistent" Margin="0,0,10,0" />
+        <Button Content="Move Email Domain" Grid.Column="1" Grid.Row="2" Margin="10,5,0,0" Click="Move_Email_Domain" />
+        <Button Content="Ratio Bills Over Average" Grid.Row="2" Margin="0,5,10,0" Click="Ratio_Bills_Over_Average" />
+        <Button Content="Member Cost" Grid.Column="1" Grid.Row="1" Click="Member_Cost" HorizontalAlignment="Right" Width="286" />
+        <TextBlock HorizontalAlignment="Left" Margin="10,25,0,0" TextWrapping="Wrap" FontSize="20" FontWeight="Bold" Text="Choose the function or procedure you want to execute:" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="572"/>
 
     </Grid>
 </Window>
