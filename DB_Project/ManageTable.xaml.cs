@@ -81,5 +81,10 @@ namespace DB_Project
             if (e.Key == Key.Enter)
                 SqlCom_TextInput(sender, null);
         }
+
+        private void ResultView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            UpdateBtn_Click(sender, null);
+        }
     }
 }

@@ -6,7 +6,7 @@
         <TextBlock Height="96" FontSize="20" TextAlignment="Center" TextWrapping="Wrap" Text="Welcome to the Knesset Database!" VerticalAlignment="Top" Width="276" HorizontalAlignment="Center" Margin="123,57,118,0"/>
         <Button Content="View Tables" HorizontalAlignment="Left" Margin="0,231,0,0" VerticalAlignment="Top" Width="256" Click="ViewTables_Button" Height="78"/>
         <Button Content="View Function/Procdure" HorizontalAlignment="Left" Margin="261,231,0,0" VerticalAlignment="Top" Width="256" Height="78" Click="FuncProc_Button"/>
-
+        <Button Content="Search Bills&#xD;&#xA;" HorizontalAlignment="Left" Margin="177,187,0,0" VerticalAlignment="Top" Width="170" Height="39" Click="SearchButton_Click"/>
 
     </Grid>
 </Window>

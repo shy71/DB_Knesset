@@ -23,6 +23,7 @@ namespace DB_Project
     public partial class ResultView : UserControl
     {
         string viewSql;
+        DataTable dt=null; 
         public ResultView()
         {
             InitializeComponent();
@@ -54,7 +55,14 @@ namespace DB_Project
         }
 
 
-
+        public void Filter(string column,string text)
+        {
+            if(dt == null)
+            {
+                dt = ((DataView) mainView.ItemsSource).ToTable();
+            }
+            mainView.ItemsSource = dt.AsEnumerable().Where(x => x[column].ToString().Contains(text));
+        }
         public void DeleteRow(string tableName)
         {
             if (mainView.SelectedItem == null)

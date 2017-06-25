@@ -76,8 +76,14 @@
     <Compile Include="ResultView.xaml.cs">
       <DependentUpon>ResultView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SearchWin.xaml.cs">
+      <DependentUpon>SearchWin.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UpdateItem.xaml.cs">
       <DependentUpon>UpdateItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SearchBill.xaml.cs">
+      <DependentUpon>SearchBill.xaml</DependentUpon>
     </Compile>
     <Page Include="getField.xaml">
       <SubType>Designer</SubType>
@@ -120,7 +126,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="SearchWin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UpdateItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SearchBill.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

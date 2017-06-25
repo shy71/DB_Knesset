@@ -38,5 +38,11 @@ namespace DB_Project
             Close();
 
         }
+
+        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            new SearchBill().Show();
+            Close();
+        }
     }
 }

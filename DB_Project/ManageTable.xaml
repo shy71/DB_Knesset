@@ -10,7 +10,7 @@
             <RowDefinition Height="106*"/>
         </Grid.RowDefinitions>
         <TextBlock x:Name="title" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" FontFamily="Ariel" FontStyle="Italic" FontWeight="Bold" Text="Party" Foreground="Salmon" Margin="342,22,341,22"/>
-        <local:ResultView Background="#DABD95" x:Name="resultView" Grid.Row="2"/>
+        <local:ResultView Background="#DABD95" x:Name="resultView" Grid.Row="2" MouseDoubleClick="ResultView_MouseDoubleClick"/>
         <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
