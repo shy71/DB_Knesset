@@ -40,28 +40,29 @@ namespace DB_Project
         }
         public bool TryUpdateQuery(string newSql)
         {
-                var temp= DBSingleton.TrySelectSql(newSql);
-            if(temp==null)
+                dt= DBSingleton.TrySelectSql(newSql);
+            if(dt==null)
             {
                 MessageBox.Show("The select sql query wasn't valid!");
                 return false;
             }
-                mainView.ItemsSource = temp.AsDataView();
+                mainView.ItemsSource = dt.AsDataView();
             return true;
         }
         public void RefreshView()
         {
-            mainView.ItemsSource = DBSingleton.SelectSql(viewSql).AsDataView();
+            dt = DBSingleton.SelectSql(viewSql);
+            mainView.ItemsSource = dt.AsDataView();
         }
 
 
-        public void Filter(string column,string text)
+        public void Filter(string []column,string text)
         {
             if(dt == null)
             {
                 dt = ((DataView) mainView.ItemsSource).ToTable();
             }
-            mainView.ItemsSource = dt.AsEnumerable().Where(x => x[column].ToString().Contains(text));
+            mainView.ItemsSource = dt.AsEnumerable().Where(x =>column.Select(col=>x[col].ToString().ToUpper().Contains(text.ToUpper())).Count(contain=> contain)>0).AsDataView();
         }
         public void DeleteRow(string tableName)
         {

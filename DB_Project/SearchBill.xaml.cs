@@ -24,7 +24,7 @@ namespace DB_Project
         {
             InitializeComponent();
             SetUpPartyBox();
-            resultView.Init("select * from bills");
+            resultView.Init("select * from bill");
         }
         private void SetUpPartyBox( )
         {
@@ -44,13 +44,13 @@ namespace DB_Project
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            resultView.Filter("bill_name", searchBox.Text);
+            resultView.Filter(new string []{ "bill_name","bill_content" }, searchBox.Text);
         }
 
         private void partyBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            resultView.Init("select * from bills natural join members natural join legislate where party_id=" + getSelectedParty());
-            resultView.Filter("bill_name", searchBox.Text);
+            resultView.Init("select * from bill natural join member natural join legislate where party_id=" + getSelectedParty());
+            resultView.Filter(new string[] { "bill_name", "bill_content" }, searchBox.Text);
 
         }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
